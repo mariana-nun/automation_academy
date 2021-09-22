@@ -5,12 +5,12 @@ name: Automation Academy
 
 on:
   push:
-    branches: [ master ]
+    branches: [ browserstack_connection ]
 
 jobs:
   build:
-    name: 'BrowserStack Test on Ubuntu'
-    runs-on: ubuntu-latest  # Can be self-hosted runner also
+    name: 'BrowserStack Test'
+    runs-on: ubuntu-latest
     steps:
       - name: 'BrowserStack Env Setup'  # Invokes the setup-env action
         uses: browserstack/github-actions/setup-env@master
