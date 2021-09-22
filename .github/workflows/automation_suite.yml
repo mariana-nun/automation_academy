@@ -5,7 +5,7 @@ name: Automation Academy
 
 on:
   push:
-    branches: [ browserstack_connection ]
+    branches: [ browserstack_connection, master ]
 
 jobs:
   build:
