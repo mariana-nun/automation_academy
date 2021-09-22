@@ -17,7 +17,6 @@ jobs:
         with:
           username:  ${{ secrets.BROWSERSTACK_USERNAME }}
           access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-      - uses: actions/checkout@browserstack_connection
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
