@@ -6,15 +6,18 @@ class SearchResultsPage(BasePage):
     def __init__(self, url, context):
         super(SearchResultsPage, self).__init__(url, context)
         self.locators = {
-            "hotels_result_cards": (By.CSS_SELECTOR, ".results-list .uitk-card-link"),
-            "cars_result_cards": (By.XPATH, "//ol[contains(@class, results-list)]/li"),
-            "no_hotel_results_message": (By.CSS_SELECTOR, "div.uitk-empty-state-heading"),
-            "no_car_results_message": (By.CSS_SELECTOR, ".uitk-error-summary-description")
+            "result_cards": (By.XPATH, "//a[@class='product_img_link']/img"),
+            "no_results_message": (By.CSS_SELECTOR, ".alert-warning"),
+            "result_quantity": (By.CSS_SELECTOR, ".heading-counter")
         }
 
-    def get_search_results(self, type):
-        self.wait(self.locators[f"{type}_result_cards"])
-        return self.wait_and_find_elements(self.locators[f"{type}_result_cards"])
+    def get_search_results(self):
+        self.wait(self.locators["result_cards"])
+        return self.wait_and_find_elements(self.locators["result_cards"])
 
-    def get_the_no_result_message(self, type):
-        return self.get_text(self.locators[f"no_{type}_results_message"])
+    def get_result_quantity(self):
+        self.wait(self.locators["result_quantity"])
+        return self.get_text(self.locators["result_quantity"])
+
+    def get_no_result_message(self):
+        return self.get_text(self.locators["no_results_message"])

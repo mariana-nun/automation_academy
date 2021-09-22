@@ -9,26 +9,25 @@ def step_impl(context):
     context.page.wait_until_page_load()
 
 
-@step("I search an hotel in {location}")
-def step_impl(context, location):
-    context.page = context.page.sent_travel_data(location)
+@step('I search "{term}"')
+def step_impl(context, term):
+    context.term = term
+    context.page = context.page.search(context.term)
 
 
-@step("I search for a car form {origin} to {destination}")
-def step_impl(context, origin, destination):
-    context.page= context.page.search_cars(origin, destination)
-
-
-@step("I see the first {quantity} results listed for that {type} search")
-def step_impl(context, quantity, type):
-    results = context.page.get_search_results(type)
+@step("I see the first {quantity} results listed for that search")
+def step_impl(context, quantity):
+    results = context.page.get_search_results()
+    assert_that(context.page.get_result_quantity(), equal_to(f"{quantity} results have been found."))
     assert_that(len(results), equal_to(int(quantity)))
 
 
-@step("I see the no {type} results message")
-def step_impl(context, type):
-    error_message = {
-        "hotel": "Sorry, we couldn’t find any results. Try adjusting your search.",
-        "car": "Sorry, there are no cars available at this location for your selected dates and time."
-    }
-    assert_that(context.page.get_the_no_result_message(type), equal_to(error_message[type]))
+@step("I see no results message")
+def step_impl(context):
+    assert_that(context.page.get_no_result_message(), equal_to(f'No results were found for your search "{context.term}"'))
+
+
+@step("I go to the login page")
+def step_impl(context):
+    context.page = context.page.go_to_login()
+    context.page.wait_until_page_load()
