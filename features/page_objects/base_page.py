@@ -9,6 +9,13 @@ class BasePage():
     def __init__(self, url, driver):
         self.url = url
         self.web_driver = driver
+        self.maximize_window()
+
+    def maximize_window(self):
+        try:
+            self.web_driver.maximize_window()
+        except:
+            print("maximize_window() not available on this device")
 
     def wait(self, locator, timeout=10):
         wait = WebDriverWait(self.web_driver, timeout)
