@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: 'BrowserStack Test'
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: 'BrowserStack Env Setup'  # Invokes the setup-env action
         uses: browserstack/github-actions/setup-env@master
