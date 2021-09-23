@@ -37,12 +37,10 @@ def before_scenario(context, scenario):
 
 def after_scenario(context, scenario):
     if hasattr(context, 'driver'):
-        context.driver.quit()
         if context.execution == "browserstack":
             if context.failed:
-                context.driver.execute_script('browserstack_executor: {"action": "setSessionStatus", '
-                                              '"arguments": {"status":"failed", '
-                                              '"reason": "At least 1 assertion failed"}}')
+                context.driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "At least 1 assertion failed"}}')
             else:
-                context.driver.execute_script('browserstack_executor: {"action": "setSessionStatus", '
-                                              '"arguments": {"status":"passed", "reason": "All assertions passed"}}')
+                context.driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "All assertions passed"}}')
+        else:
+            context.driver.quit()
