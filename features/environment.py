@@ -5,11 +5,13 @@ import configparser
 from selenium import webdriver
 from utils import get_capabilities
 
+
 def before_all(context):
     load_dotenv()
     config = configparser.ConfigParser()
     config.read(os.path.join(os.path.dirname(__file__), '../setup.cfg'))
-    context.execution = config.get("env", "execution")
+    context.execution = os.environ["EXECUTION"] if os.environ.get("IS_CI_EXECUTION", "no") == "yes" else  \
+        config.get("env", "execution")
     context.env = config.get("env", "environment")
 
 
@@ -37,12 +39,12 @@ def before_scenario(context, scenario):
 
 def after_scenario(context, scenario):
     if hasattr(context, 'driver'):
-        context.driver.quit()
         if context.execution == "browserstack":
             if context.failed:
-                context.driver.execute_script('browserstack_executor: {"action": "setSessionStatus", '
-                                              '"arguments": {"status":"failed", '
-                                              '"reason": "At least 1 assertion failed"}}')
+                context.driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": '
+                                              '{"status":"failed", "reason": "At least 1 assertion failed"}}')
             else:
-                context.driver.execute_script('browserstack_executor: {"action": "setSessionStatus", '
-                                              '"arguments": {"status":"passed", "reason": "All assertions passed"}}')
+                context.driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": '
+                                              '{"status":"passed", "reason": "All assertions passed"}}')
+        else:
+            context.driver.quit()
