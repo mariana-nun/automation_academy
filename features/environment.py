@@ -33,6 +33,15 @@ def before_scenario(context, scenario):
                 desired_capabilities=get_capabilities()
                 #                desired_capabilities= DesiredCapabilities.FIREFOX
             )
+        elif context.execution == "saucelabs":
+            USERNAME = os.environ['SAUCELABS_USERNAME']
+            SAUCELABS_ACCESS_KEY = os.environ["SAUCELABS_ACCESS_KEY"]
+            url = "http://%s:%s@ondemand.saucelabs.com:80/wd/hub" % (USERNAME, SAUCELABS_ACCESS_KEY)
+            context.driver = webdriver.Remote(
+                command_executor=url,
+                desired_capabilities=get_capabilities()
+                #                desired_capabilities= DesiredCapabilities.FIREFOX
+            )
         else:
             context.driver = webdriver.Chrome('chromedriver.exe')
         context.page = HomePage(base_url, context.driver)
