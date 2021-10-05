@@ -47,5 +47,4 @@ def after_scenario(context, scenario):
             else:
                 context.driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": '
                                               '{"status":"passed", "reason": "All assertions passed"}}')
-        else:
-            context.driver.quit()
+        context.driver.quit()

@@ -1,0 +1,39 @@
+{
+  "capabilities": {
+    "project": "Automation Academy",
+    "build": "Parallel Buid",
+    "name": "Automation test Parallel Execution",
+    "browserstack.console": "info",
+    "browserstack.idleTimeout": "300"
+  },
+  "environments": [
+    {
+      "os_version": "11",
+      "device": "iPhone 8",
+      "real_mobile": "true"
+    },
+    {
+      "os": "Windows",
+      "os_version": "8",
+      "browserName": "Firefox",
+      "browser_version": "65.0"
+    },
+    {
+      "device": "Samsung Galaxy S20",
+      "os_browser": "11.0",
+      "real_mobile": "true"
+    },
+    {
+      "os_version": "Big Sur",
+      "os": "OS X",
+      "browser": "Safari",
+      "browser_version": "latest"
+    },
+    {
+      "os": "Windows",
+      "os_version": "8",
+      "browserName": "IE",
+      "browser_version": "10.0"
+    }
+  ]
+}
