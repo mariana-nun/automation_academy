@@ -27,10 +27,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Run test
-        if: PARALLEL_EXECUTION == 'no'
+        if: ${{ secrets.PARALLEL_EXECUTION }} == 'no'
         run: |
           behave
       - name: Run parallel tests
-        if: PARALLEL_EXECUTION == 'yes'
+        if: ${{ secrets.PARALLEL_EXECUTION }} == 'yes'
         run: |
           python run_parallel_tests.py
