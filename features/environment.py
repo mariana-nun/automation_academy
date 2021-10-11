@@ -12,7 +12,8 @@ def before_all(context):
     config.read(os.path.join(os.path.dirname(__file__), '../setup.cfg'))
     context.execution = os.environ["EXECUTION"] if os.environ.get("IS_CI_EXECUTION", "no") == "yes" else  \
         config.get("env", "execution")
-    context.env = config.get("env", "environment")
+    context.env = os.environ["ENVIRONMENT"] if os.environ.get("IS_CI_EXECUTION", "no") == "yes" else \
+        config.get("env", "environment")
 
 
 def before_scenario(context, scenario):
