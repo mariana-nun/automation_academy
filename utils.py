@@ -15,22 +15,22 @@ def get_capabilities():
     capabilities = ['os_name', 'os_version', 'browser', 'browser_version', 'name', 'build', 'project',
                     'browserstack.console', 'device']
     desired_capabilities = {}
-    for capability in capabilities:
-        try:
-            if os.environ.get("PARALLEL_EXECUTION", "no") == "yes":
-                TASK_ID = int(os.environ['TASK_ID']) if 'TASK_ID' in os.environ else 0
-                with open("browsers.json", "r") as f:
-                    capabilities = json.loads(f.read())
-                f.close()
-                desired_capabilities = capabilities["environments"][TASK_ID]
-                for key in capabilities["capabilities"]:
-                    if key not in desired_capabilities:
-                        desired_capabilities[key] = capabilities["capabilities"][key]
-            else:
+    if os.environ.get("PARALLEL_EXECUTION", "no") == "yes":
+        TASK_ID = int(os.environ['TASK_ID']) if 'TASK_ID' in os.environ else 0
+        with open("browsers.json", "r") as f:
+            capabilities = json.loads(f.read())
+        f.close()
+        desired_capabilities = capabilities["environments"][TASK_ID]
+        for key in capabilities["capabilities"]:
+            if key not in desired_capabilities:
+                desired_capabilities[key] = capabilities["capabilities"][key]
+    else:
+        for capability in capabilities:
+            try:
                 if os.environ.get("IS_CI_EXECUTION", "no") == "yes":
                     desired_capabilities[capability.replace("_name", "")] = os.environ[capability]
                 else:
                     desired_capabilities[capability.replace("_name", "")] = config.get("capabilities", capability)
-        except (NoOptionError, KeyError):
-            pass
+            except (NoOptionError, KeyError):
+                pass
     return desired_capabilities
