@@ -1,7 +1,7 @@
 {
   "capabilities": {
     "project": "Automation Academy",
-    "build": "Parallel Buid",
+    "build": "Parallel Build",
     "name": "Automation test Parallel Execution",
     "browserstack.console": "info",
     "browserstack.idleTimeout": "300"
