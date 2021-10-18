@@ -29,4 +29,13 @@ jobs:
       - name: Run test
         run: |
           behave
+          env:
+          BROWSER: ${{ secrets.BROWSER }}
+          BROWSER_VERSION: ${{ secrets.BROWSER_VERSION }}
+          ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
+          EXECUTION: ${{ secrets.EXECUTION }}
+          IS_CI_EXECUTION: ${{ secrets.IS_CI_EXECUTION }}
+          OS_NAME: ${{ secrets.OS_NAME }}
+          OS_VERSION: ${{ secrets.OS_VERSION }}
+          PARALLEL_EXECUTION: ${{ secrets.PARALLEL_EXECUTION }}
           
