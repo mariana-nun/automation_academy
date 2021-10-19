@@ -1,0 +1,37 @@
+{
+  "capabilities": {
+    "build": "Sauce_Execution",
+    "name": "Automation Academy"
+  },
+  "environments": [
+    {
+      "browserName": "MicrosoftEdge",
+      "platform": "Windows 10",
+      "version": "93"
+    },
+    {
+      "browserName": "chrome",
+      "platform": "macOS 11.00",
+      "version": "80"
+    },
+    {
+      "platformName": "android",
+      "platformVersion": "11.0",
+      "appiumVersion": "1.20.2",
+      "deviceName": "Android GoogleAPI Emulator",
+      "browserName": "Chrome"
+    },
+    {
+      "platformName": "iOS",
+      "platformVersion": "14.5",
+      "appiumVersion": "1.21.0",
+      "deviceName": "iPad Pro (11 inch) (2nd generation) Simulator",
+      "browserName": "Safari"
+    },
+    {
+      "browserName": "chrome",
+      "platform": "Windows 10",
+      "version": "83"
+    }
+  ]
+}
