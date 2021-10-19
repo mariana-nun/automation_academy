@@ -5,11 +5,11 @@ name: Automation Academy
 
 on:
   push:
-    branches: [ browserstack_connection, master ]
+    branches: [ master ]
 
 jobs:
   build:
-    name: 'BrowserStack Test'
+    name: 'Saucelabs Test'
     runs-on: windows-latest
     env:
           platformName: ${{ secrets.platformName }}
@@ -22,11 +22,6 @@ jobs:
           SAUCE_USERNAME: ${{secrets.SAUCELABS_USERNAME}}
           SAUCE_ACCESS_KEY: ${{secrets.SAUCELABS_ACCESS_KEY}}
     steps:
-      - name: Saucectl RUN Docker and Cloud
-        uses: saucelabs/saucectl-run-action@v1
-        with:
-          testing-environment: ""
-          concurrency: 10
       - uses: actions/checkout@v2
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
