@@ -12,10 +12,11 @@ jobs:
     name: 'Saucelabs Test'
     runs-on: windows-latest
     env:
-          platformName: ${{ secrets.platformName }}
-          appiumVersion=: ${{ secrets.appiumVersion }}
-          deviceName=: ${{ secrets.deviceName }}
-          browserName: ${{ secrets.browserName }}
+          platformName: ${{ secrets.PLATFORMNAME }}
+          platformVersion: ${{ secrets.PLATFORMVERSION }}
+          appiumVersion=: ${{ secrets.APPIUMVERSION }}
+          deviceName=: ${{ secrets.DEVICENAME }}
+          browserName: ${{ secrets.BROWSERNAME }}
           ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
           EXECUTION: ${{ secrets.EXECUTION }}
           IS_CI_EXECUTION: ${{ secrets.IS_CI_EXECUTION }}
