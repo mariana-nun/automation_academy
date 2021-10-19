@@ -1,0 +1,41 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Automation Academy
+
+on:
+  push:
+    branches: [ browserstack_connection, master ]
+
+jobs:
+  build:
+    name: 'BrowserStack Test'
+    runs-on: windows-latest
+    env:
+          platformName: ${{ secrets.platformName }}
+          appiumVersion=: ${{ secrets.appiumVersion }}
+          deviceName=: ${{ secrets.deviceName }}
+          browserName: ${{ secrets.browserName }}
+          ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
+          EXECUTION: ${{ secrets.EXECUTION }}
+          IS_CI_EXECUTION: ${{ secrets.IS_CI_EXECUTION }}
+          SAUCE_USERNAME: ${{secrets.SAUCELABS_USERNAME}}
+          SAUCE_ACCESS_KEY: ${{secrets.SAUCELABS_ACCESS_KEY}}
+    steps:
+      - name: Saucectl RUN Docker and Cloud
+        uses: saucelabs/saucectl-run-action@v1
+        with:
+          testing-environment: ""
+          concurrency: 10
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run test
+        run: |
+          behave
