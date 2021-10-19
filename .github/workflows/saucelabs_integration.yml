@@ -19,6 +19,8 @@ jobs:
           browserName: ${{ secrets.BROWSERNAME }}
           ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
           EXECUTION: ${{ secrets.EXECUTION }}
+          name: ${{ secrets.NAME }}
+          build: ${{ secrets.BUILD }}
           IS_CI_EXECUTION: ${{ secrets.IS_CI_EXECUTION }}
           SAUCELABS_USERNAME: ${{secrets.SAUCELABS_USERNAME}}
           SAUCELABS_ACCESS_KEY: ${{secrets.SAUCELABS_ACCESS_KEY}}
