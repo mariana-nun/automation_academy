@@ -5,7 +5,7 @@ name: Automation Academy
 
 on:
   push:
-    branches: [ parallel_execution, master ]
+    branches: [ parallel_execution ]
 
 jobs:
   build:
