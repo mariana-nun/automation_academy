@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 import configparser
 from selenium import webdriver
-from utils import get_capabilities
+from utils import get_capabilities, get_sauce_capabilities
 
 
 def before_all(context):
@@ -39,7 +39,7 @@ def before_scenario(context, scenario):
             url = "http://%s:%s@ondemand.saucelabs.com:80/wd/hub" % (USERNAME, SAUCELABS_ACCESS_KEY)
             context.driver = webdriver.Remote(
                 command_executor=url,
-                desired_capabilities=get_capabilities()
+                desired_capabilities=get_sauce_capabilities()
                 #                desired_capabilities= DesiredCapabilities.FIREFOX
             )
         else:
