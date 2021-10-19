@@ -19,8 +19,8 @@ jobs:
           ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
           EXECUTION: ${{ secrets.EXECUTION }}
           IS_CI_EXECUTION: ${{ secrets.IS_CI_EXECUTION }}
-          SAUCE_USERNAME: ${{secrets.SAUCELABS_USERNAME}}
-          SAUCE_ACCESS_KEY: ${{secrets.SAUCELABS_ACCESS_KEY}}
+          SAUCELABS_USERNAME: ${{secrets.SAUCELABS_USERNAME}}
+          SAUCELABS_ACCESS_KEY: ${{secrets.SAUCELABS_ACCESS_KEY}}
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3.9
