@@ -14,8 +14,8 @@ jobs:
     env:
           platformName: ${{ secrets.PLATFORMNAME }}
           platformVersion: ${{ secrets.PLATFORMVERSION }}
-          appiumVersion=: ${{ secrets.APPIUMVERSION }}
-          deviceName=: ${{ secrets.DEVICENAME }}
+          appiumVersion: ${{ secrets.APPIUMVERSION }}
+          deviceName: ${{ secrets.DEVICENAME }}
           browserName: ${{ secrets.BROWSERNAME }}
           ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
           EXECUTION: ${{ secrets.EXECUTION }}
