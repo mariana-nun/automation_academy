@@ -40,6 +40,7 @@ def before_scenario(context, scenario):
             context.driver = webdriver.Remote(
                 command_executor=url,
                 desired_capabilities=get_sauce_capabilities()
+                #                desired_capabilities= DesiredCapabilities.FIREFOX
             )
         else:
             context.driver = webdriver.Chrome('chromedriver.exe')
